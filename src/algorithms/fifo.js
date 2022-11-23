@@ -1,0 +1,3 @@
+const fifo = (jobs) => {
+  // pass
+};

@@ -1,0 +1,3 @@
+const stc = (jobs) => {
+  // pass
+};
