@@ -8,7 +8,11 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 export default function Settings() {
+  const ARRIVAL_TIME_TAG = 0;
+  const RUN_TIME_TAG = 1;
+
   const [jobs, setJobs] = useState([]);
+
   const handleJobCountChange = (e) => {
     let currCount = jobs.length;
     let newJobCount = e.target.value;
@@ -18,7 +22,8 @@ export default function Settings() {
       if (j < currCount) {
         newJobs.push(jobs[j]);
       } else {
-        newJobs.push({ arrivalTime: "", runTime: "" });
+        // newJobs.push({ arrivalTime: "", runTime: "" });
+        newJobs.push(["", ""]);
       }
     }
 
@@ -29,20 +34,9 @@ export default function Settings() {
     console.log(e.target.value);
   };
 
-  const handleArrivalTimeChange = (e, index) => {
+  const handleJobDetailsChange = (e, jobIndex, jobDetail) => {
     let newJobs = [...jobs];
-    newJobs[index].arrivalTime = e.target.value;
-
-    setJobs(newJobs);
-
-    console.log(jobs);
-  };
-
-  const handleRunTimeChange = (e, index) => {
-    console.log(index, e.target.value);
-
-    let newJobs = [...jobs];
-    newJobs[index].runTime = e.target.value;
+    newJobs[jobIndex][jobDetail] = Number(e.target.value);
 
     setJobs(newJobs);
 
@@ -112,7 +106,7 @@ export default function Settings() {
       </div>
       <br />
       <div>
-        {jobs.map((job, index) => (
+        {jobs.map((job, jobIndex) => (
           <div style={{ display: "flex" }}>
             <TextField
               id="outlined-number"
@@ -122,7 +116,9 @@ export default function Settings() {
               InputLabelProps={{
                 shrink: true,
               }}
-              onChange={(e) => handleArrivalTimeChange(e, index)}
+              onChange={(e) =>
+                handleJobDetailsChange(e, jobIndex, ARRIVAL_TIME_TAG)
+              }
             />
             <TextField
               id="outlined-number"
@@ -133,7 +129,9 @@ export default function Settings() {
                 shrink: true,
               }}
               style={{ marginLeft: "0.5rem" }}
-              onChange={(e) => handleRunTimeChange(e, index)}
+              onChange={(e) =>
+                handleJobDetailsChange(e, jobIndex, RUN_TIME_TAG)
+              }
             />
             <br />
             <br />
