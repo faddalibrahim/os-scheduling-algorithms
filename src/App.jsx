@@ -3,6 +3,7 @@ import "./App.css";
 import Button from "@mui/material/Button";
 
 import Settings from "./components/settings/Settings";
+import Animate from "./components/animate/Animate";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <Settings />
-      {/* <Button variant="contained">run schedule</Button> */}
+      <Animate />
     </div>
   );
 }

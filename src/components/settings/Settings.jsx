@@ -5,6 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 export default function Settings() {
   const [jobs, setJobs] = useState([]);
@@ -20,7 +21,7 @@ export default function Settings() {
         newJobs.push({ arrivalTime: "", runTime: "" });
       }
     }
-    
+
     setJobs(newJobs);
   };
 
