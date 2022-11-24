@@ -30,12 +30,12 @@ function Animate({ jobs }) {
   return (
     <div style={{ padding: "1rem", backgroundColor: "#222", flexGrow: "1" }}>
       <div style={{ display: "flex" }}>
-        {jobs.map((label, index) => (
+        {jobs.map((job, index) => (
           <div
             key={index}
             style={{
-              backgroundColor: `${COLORS[index][0]}`,
-              color: `${COLORS[index][1]}`,
+              backgroundColor: `${COLORS[job.colorIndex][0]}`,
+              color: `${COLORS[job.colorIndex][1]}`,
               fontSize: "150%",
               width: "5rem",
               padding: "0.5rem 1rem",
@@ -46,7 +46,7 @@ function Animate({ jobs }) {
               fontFamily: "Google Sans",
             }}
           >
-            {indexToLetter(index)}
+            {job.label}
           </div>
         ))}
       </div>
@@ -60,8 +60,10 @@ function Animate({ jobs }) {
           <div
             key={index}
             style={{
-              backgroundColor: `${COLORS[index][0]}`,
-              color: `${COLORS[index][1]}`,
+              // backgroundColor: `${COLORS[index][0]}`,
+              backgroundColor: `${COLORS[job.colorIndex][0]}`,
+              // color: `${COLORS[index][1]}`,
+              color: `${COLORS[job.colorIndex][1]}`,
               // color: "#111",
               fontSize: "150%",
               // padding: "0.5rem 1rem",
@@ -75,13 +77,13 @@ function Animate({ jobs }) {
               width: 0,
               // outline: `0.1rem solid ${COLORS[index][1]}`,
               cursor: "pointer",
-              "--final-width": `${job[0] * 1.5}rem`,
-              animation: `run ${job[1] * 0.1}s linear ${
-                job[2] * 0.1
+              "--final-width": `${job["runTime"] * 1.5}rem`,
+              animation: `run ${job["runTime"] * 0.1}s linear ${
+                job["animationDelay"] * 0.1
               }s forwards`,
             }}
           >
-            {index}
+            {job.label}
           </div>
         ))}
       </div>

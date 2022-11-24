@@ -6,10 +6,27 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { indexToLetter } from "../../utils/functions";
 
 export default function Settings({ jobs, setJobs }) {
-  const ARRIVAL_TIME_TAG = 0;
-  const RUN_TIME_TAG = 1;
+  const ARRIVAL_TIME = "arrivalTime";
+  const RUN_TIME = "runTime";
+  const ANIMATION_DELAY = "animationDelay";
+  const LABEL = "label";
+  const COLOR_INDEX = "colorIndex";
+
+  // const COLORS = [
+  //   ["rgba(255, 99, 132,0.2)", "rgba(255, 99, 132,1)"],
+  //   ["rgba(54, 162, 235,0.2)", "rgba(54, 162, 235,1)"],
+  //   ["rgba(75, 192, 192,0.2)", "rgba(75, 192, 192,1)"],
+  //   ["rgb(242 232 109 / 30%)", "rgb(242 232 109 / 100%)"],
+  //   ["rgba(160,99,255,0.2)", "rgba(160,99,255,1)"],
+  //   ["rgba(218,191,255,0.2)", "rgba(218,191,255,1)"],
+  //   ["rgb(127 222 255 / 30%)", "rgb(127 222 255 / 100%)"],
+  //   ["rgb(198 236 174 / 30%)", "rgb(198 236 174 / 100%)"],
+  //   ["rgb(245 26 164 / 30%)", "rgb(245 26 164 / 100%)"],
+  //   ["rgb(39 193 75 / 30%)", "rgb(39 193 75 / 100%)"],
+  // ];
 
   const handleJobCountChange = (e) => {
     let currCount = jobs.length;
@@ -18,7 +35,14 @@ export default function Settings({ jobs, setJobs }) {
 
     for (let j = 0; j < newJobCount; j++) {
       if (j < currCount) newJobs.push(jobs[j]);
-      else newJobs.push(["", ""]);
+      else
+        newJobs.push({
+          [ARRIVAL_TIME]: "",
+          [RUN_TIME]: "",
+          [ANIMATION_DELAY]: "",
+          [LABEL]: indexToLetter(j),
+          [COLOR_INDEX]: jobs.length,
+        });
     }
 
     setJobs(newJobs);
@@ -149,7 +173,7 @@ export default function Settings({ jobs, setJobs }) {
                 shrink: true,
               }}
               onChange={(e) =>
-                handleJobDetailsChange(e, jobIndex, ARRIVAL_TIME_TAG)
+                handleJobDetailsChange(e, jobIndex, ARRIVAL_TIME)
               }
             />
             <TextField
@@ -161,9 +185,7 @@ export default function Settings({ jobs, setJobs }) {
                 shrink: true,
               }}
               style={{ marginLeft: "0.5rem" }}
-              onChange={(e) =>
-                handleJobDetailsChange(e, jobIndex, RUN_TIME_TAG)
-              }
+              onChange={(e) => handleJobDetailsChange(e, jobIndex, RUN_TIME)}
             />
             <br />
             <br />

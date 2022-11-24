@@ -8,14 +8,14 @@
 export default function FIFO(jobs) {
   const jobs_ = [...jobs];
 
-  jobs_.sort((jobA, jobB) => jobA[0] - jobB[0]);
+  jobs_.sort((jobA, jobB) => jobA["arrivalTime"] - jobB["arrivalTime"]);
 
   let animationDelay = 0;
 
   for (let i in jobs_) {
     console.log(animationDelay);
-    jobs_[i].push(animationDelay);
-    animationDelay += jobs_[i][1];
+    jobs_[i]["animationDelay"] = animationDelay;
+    animationDelay += jobs_[i]["runTime"];
   }
 
   return jobs_;
