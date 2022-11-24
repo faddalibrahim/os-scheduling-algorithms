@@ -7,11 +7,9 @@ import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-export default function Settings() {
+export default function Settings({ jobs, setJobs }) {
   const ARRIVAL_TIME_TAG = 0;
   const RUN_TIME_TAG = 1;
-
-  const [jobs, setJobs] = useState([]);
 
   const handleJobCountChange = (e) => {
     let currCount = jobs.length;
@@ -19,15 +17,13 @@ export default function Settings() {
     let newJobs = [];
 
     for (let j = 0; j < newJobCount; j++) {
-      if (j < currCount) {
-        newJobs.push(jobs[j]);
-      } else {
-        // newJobs.push({ arrivalTime: "", runTime: "" });
-        newJobs.push(["", ""]);
-      }
+      if (j < currCount) newJobs.push(jobs[j]);
+      else newJobs.push(["", ""]);
     }
 
     setJobs(newJobs);
+
+    console.log(jobs);
   };
 
   const handleScheduleChange = (e) => {
@@ -50,11 +46,11 @@ export default function Settings() {
         flexFlow: "column",
         alignItems: "start",
         height: "100vh",
-        width: "20.5vw",
+        width: "23vw",
         padding: "1rem",
         boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
         // boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
-        padding: "1rem",
+        padding: "1rem 1.8rem",
         overflowY: "auto",
       }}
     >
@@ -71,22 +67,58 @@ export default function Settings() {
           <FormControlLabel
             value="FIFO"
             control={<Radio size="small" />}
-            label={<small>FIFO</small>}
+            label={
+              <small
+                style={{
+                  fontFamily: "Product Sans",
+                  fontSize: "100%",
+                }}
+              >
+                FIFO
+              </small>
+            }
           />
           <FormControlLabel
             value="SJF"
             control={<Radio size="small" />}
-            label={<small>SJF</small>}
+            label={
+              <small
+                style={{
+                  fontFamily: "Product Sans",
+                  fontSize: "100%",
+                }}
+              >
+                SJF
+              </small>
+            }
           />
           <FormControlLabel
             value="STC"
             control={<Radio size="small" />}
-            label={<small>STC</small>}
+            label={
+              <small
+                style={{
+                  fontFamily: "Product Sans",
+                  fontSize: "100%",
+                }}
+              >
+                STC
+              </small>
+            }
           />
           <FormControlLabel
             value="RR"
             control={<Radio size="small" />}
-            label={<small>RR</small>}
+            label={
+              <small
+                style={{
+                  fontFamily: "Product Sans",
+                  fontSize: "100%",
+                }}
+              >
+                RR
+              </small>
+            }
           />
         </RadioGroup>
       </FormControl>

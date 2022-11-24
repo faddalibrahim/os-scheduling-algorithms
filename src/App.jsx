@@ -6,12 +6,12 @@ import Settings from "./components/settings/Settings";
 import Animate from "./components/animate/Animate";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [jobs, setJobs] = useState([]);
 
   return (
     <div className="App">
-      <Settings />
-      <Animate />
+      <Settings jobs={jobs} setJobs={setJobs} />
+      <Animate jobs={jobs} />
     </div>
   );
 }
