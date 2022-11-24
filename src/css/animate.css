@@ -1,0 +1,15 @@
+:root {
+  --initial-width: 0rem;
+  --final-width: 5rem;
+}
+
+@keyframes run {
+  from {
+    width: var(--initial-width);
+    opacity: 0;
+  }
+  to {
+    width: var(--final-width);
+    opacity: 1;
+  }
+}

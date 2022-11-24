@@ -1,7 +1,11 @@
 import { useState } from "react";
 import Button from "@mui/material/Button";
+import SCHEDULE_BY_FIFO from "../../algorithms/fifo";
+import "../../css/animate.css";
+import { indexToLetter } from "../../utils/functions";
 
 function Animate({ jobs }) {
+  const [scheduledJobs, setScheduledJobs] = useState([]);
   // const jobLabels = [...jobs];
   const COLORS = [
     ["rgba(255, 99, 132,0.2)", "rgba(255, 99, 132,1)"],
@@ -16,10 +20,15 @@ function Animate({ jobs }) {
     ["rgb(39 193 75 / 30%)", "rgb(39 193 75 / 100%)"],
   ];
 
+  const schedule = () => {
+    setScheduledJobs([]);
+    // setScheduledJobs(SCHEDULE_BY_FIFO(jobs));
+
+    setTimeout(() => setScheduledJobs(SCHEDULE_BY_FIFO(jobs)), 0.5);
+  };
+
   return (
     <div style={{ padding: "1rem", backgroundColor: "#222", flexGrow: "1" }}>
-      {/* <Button variant="contained">run</Button> */}
-
       <div style={{ display: "flex" }}>
         {jobs.map((label, index) => (
           <div
@@ -29,14 +38,47 @@ function Animate({ jobs }) {
               color: `${COLORS[index][1]}`,
               fontSize: "150%",
               width: "5rem",
-              // height: "2rem",
-              // lineHeight: "2rem",
               padding: "0.5rem 1rem",
               textAlign: "center",
               marginRight: "0.5rem",
               borderRadius: "0.2rem",
-              outline: `0.1rem solid ${COLORS[index][1]}`,
+              // outline: `0.1rem solid ${COLORS[index][1]}`,
               fontFamily: "Google Sans",
+            }}
+          >
+            {indexToLetter(index)}
+          </div>
+        ))}
+      </div>
+      <br />
+      <Button variant="outlined" onClick={() => schedule()}>
+        run
+      </Button>
+      <br />
+      <div style={{ display: "flex" }}>
+        {scheduledJobs.map((job, index) => (
+          <div
+            key={index}
+            style={{
+              backgroundColor: `${COLORS[index][0]}`,
+              color: `${COLORS[index][1]}`,
+              // color: "#111",
+              fontSize: "150%",
+              // padding: "0.5rem 1rem",
+              height: "2rem",
+              lineHeight: "2rem",
+              textAlign: "center",
+              marginRight: "0.5rem",
+              borderRadius: "0.2rem",
+              fontFamily: "Google Sans",
+              opacity: 0,
+              width: 0,
+              // outline: `0.1rem solid ${COLORS[index][1]}`,
+              cursor: "pointer",
+              "--final-width": `${job[0] * 1.5}rem`,
+              animation: `run ${job[1] * 0.1}s linear ${
+                job[2] * 0.1
+              }s forwards`,
             }}
           >
             {index}
