@@ -5,7 +5,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import { indexToLetter } from "../../utils/functions";
 
 export default function Settings({ jobs, setJobs }) {
@@ -33,8 +32,6 @@ export default function Settings({ jobs, setJobs }) {
     }
 
     setJobs(newJobs);
-
-    console.log(jobs);
   };
 
   const handleScheduleChange = (e) => {
@@ -46,8 +43,6 @@ export default function Settings({ jobs, setJobs }) {
     newJobs[jobIndex][jobDetail] = Number(e.target.value);
 
     setJobs(newJobs);
-
-    console.log(jobs);
   };
 
   return (

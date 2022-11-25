@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import SCHEDULE_BY_FIFO from "../../algorithms/fifo";
 import "../../css/animate.css";
 import { indexToLetter } from "../../utils/functions";
+import SCHEDULE_BY_SJF from "../../algorithms/sjf";
 
 function Animate({ jobs }) {
   const [scheduledJobs, setScheduledJobs] = useState([]);
@@ -24,7 +25,8 @@ function Animate({ jobs }) {
     setScheduledJobs([]);
     // setScheduledJobs(SCHEDULE_BY_FIFO(jobs));
 
-    setTimeout(() => setScheduledJobs(SCHEDULE_BY_FIFO(jobs)), 0.5);
+    // setTimeout(() => setScheduledJobs(SCHEDULE_BY_FIFO(jobs)), 0.5);
+    setTimeout(() => setScheduledJobs(SCHEDULE_BY_SJF(jobs)), 0.5);
   };
 
   return (
