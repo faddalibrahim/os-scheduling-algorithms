@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Button from "@mui/material/Button";
+import SJF from "./algorithms/sjf";
 
 import Settings from "./components/settings/Settings";
 import Animate from "./components/animate/Animate";
