@@ -24,6 +24,7 @@ export default function SJF(jobs) {
       }
     }
 
+    // remove the jobs that that arrive while current from was running (Transer was done in previous code)
     for (item of temp) jobs_.shift();
 
     // sort those that arrived while current job was running, by runTime (getting the SJF)
@@ -34,12 +35,11 @@ export default function SJF(jobs) {
     // get the job that is supposed to run next : the Shortest Job
     curr = temp.shift();
 
-    // update prevEndTime
+    // update prevEndTime of the job to be scheduled (curr) from temp if any
+    // else pick from the jobs_ array
     if (curr) {
       prevEndTime += curr["runTime"];
-      // console.log("hello")
     } else {
-      // console.log(jobs_,"hi");
       if (jobs_.length) {
         curr = jobs_.shift();
         prevEndTime = curr["arrivalTime"] + curr["runTime"];
