@@ -5,7 +5,7 @@ import "../../css/animate.css";
 import { indexToLetter } from "../../utils/functions";
 import SCHEDULE_BY_SJF from "../../algorithms/sjf";
 
-function Animate({ jobs }) {
+function Animate({ jobs, schedulingAlgorithm }) {
   const [scheduledJobs, setScheduledJobs] = useState([]);
   // const jobLabels = [...jobs];
   const COLORS = [
@@ -21,12 +21,15 @@ function Animate({ jobs }) {
     ["rgb(39 193 75 / 30%)", "rgb(39 193 75 / 100%)"],
   ];
 
+  const ALGOS = {
+    FIFO: SCHEDULE_BY_FIFO,
+    SJF: SCHEDULE_BY_SJF,
+  };
+
   const schedule = () => {
     setScheduledJobs([]);
-    // setScheduledJobs(SCHEDULE_BY_FIFO(jobs));
 
-    // setTimeout(() => setScheduledJobs(SCHEDULE_BY_FIFO(jobs)), 0.5);
-    setTimeout(() => setScheduledJobs(SCHEDULE_BY_SJF(jobs)), 0.5);
+    setTimeout(() => setScheduledJobs(ALGOS[schedulingAlgorithm](jobs)), 0.5);
   };
 
   return (
@@ -44,7 +47,7 @@ function Animate({ jobs }) {
               textAlign: "center",
               marginRight: "0.5rem",
               borderRadius: "0.2rem",
-              // outline: `0.1rem solid ${COLORS[index][1]}`,
+              outline: `0.1rem solid ${COLORS[index][1]}`,
               fontFamily: "Google Sans",
             }}
           >
@@ -77,7 +80,7 @@ function Animate({ jobs }) {
               fontFamily: "Google Sans",
               opacity: 0,
               width: 0,
-              // outline: `0.1rem solid ${COLORS[index][1]}`,
+              // outline: `0.1rem solid ${COLORS[job.colorIndex][1]}`,
               cursor: "pointer",
               "--final-width": `${job["runTime"] * 1.5}rem`,
               animation: `run ${job["runTime"] * 0.1}s linear ${

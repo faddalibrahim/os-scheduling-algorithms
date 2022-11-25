@@ -7,7 +7,7 @@ import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import { indexToLetter } from "../../utils/functions";
 
-export default function Settings({ jobs, setJobs }) {
+export default function Settings({ jobs, setJobs, setSchdedulingAlgorithm }) {
   const ARRIVAL_TIME = "arrivalTime";
   const RUN_TIME = "runTime";
   const ANIMATION_DELAY = "animationDelay";
@@ -35,7 +35,7 @@ export default function Settings({ jobs, setJobs }) {
   };
 
   const handleScheduleChange = (e) => {
-    console.log(e.target.value);
+    setSchdedulingAlgorithm(e.target.value);
   };
 
   const handleJobDetailsChange = (e, jobIndex, jobDetail) => {

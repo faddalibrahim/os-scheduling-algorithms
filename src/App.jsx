@@ -8,6 +8,7 @@ import Animate from "./components/animate/Animate";
 
 function App() {
   const [jobs, setJobs] = useState([]);
+  const [schedulingAlgorithm, setSchdedulingAlgorithm] = useState("");
 
   // console.log(
   //   SJF([
@@ -27,8 +28,12 @@ function App() {
 
   return (
     <div className="App">
-      <Settings jobs={jobs} setJobs={setJobs} />
-      <Animate jobs={jobs} />
+      <Settings
+        jobs={jobs}
+        setJobs={setJobs}
+        setSchdedulingAlgorithm={setSchdedulingAlgorithm}
+      />
+      <Animate jobs={jobs} schedulingAlgorithm={schedulingAlgorithm} />
     </div>
   );
 }

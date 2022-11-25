@@ -1,3 +1,0 @@
-const stc = (jobs) => {
-  // pass
-};

@@ -1,3 +1,1 @@
-const rr = (jobs) => {
-  // pass
-};
+export default function RR(jobs) {}
